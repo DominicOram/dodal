@@ -1,6 +1,5 @@
 import inspect
 import socket
-from collections import namedtuple
 from dataclasses import dataclass
 from functools import wraps
 from importlib import import_module
@@ -55,18 +54,11 @@ BLUESKY_PROTOCOLS = [
 ]
 
 
-Point2D = namedtuple("Point2D", ["x", "y"])
-Point3D = namedtuple("Point3D", ["x", "y", "z"])
-
 T = TypeVar("T")
 
 
-def get_beamline_name(ixx: str) -> str:
-    bl = environ.get("BEAMLINE")
-    if bl is None:
-        return f"s{ixx[1:]}"
-    else:
-        return bl
+def get_beamline_name(default: str) -> str:
+    return environ.get("BEAMLINE") or default
 
 
 def get_hostname() -> str:
@@ -90,7 +82,7 @@ def skip_device(precondition=lambda: True):
         def wrapper(*args, **kwds) -> T:
             return func(*args, **kwds)
 
-        if precondition:
+        if precondition():
             wrapper.__skip__ = True  # type: ignore
         return wrapper
 
