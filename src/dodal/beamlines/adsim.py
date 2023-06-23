@@ -2,8 +2,7 @@ import os
 
 from dodal.devices.adsim import SimStage
 from dodal.devices.areadetector import AdSimDetector
-
-from .utils import get_hostname
+from dodal.utils import get_hostname
 
 # Default prefix to hostname unless overriden with export PREFIX=<prefix>
 PREFIX: str = os.environ.get("PREFIX", get_hostname())
