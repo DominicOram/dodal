@@ -1,13 +1,11 @@
 from ophyd import Component as Cpt
+from ophyd import DetectorBase, EpicsSignal
 from ophyd.areadetector.base import ADComponent as Cpt
 from ophyd.areadetector.detectors import DetectorBase
 
-from .adutils import (
-    Hdf5Writer,
-    PluginWiring,
-    SingleTriggerV33,
-    SynchronisedAdDriverBase,
-)
+from dodal.devices.utils import set_then_restore
+
+from .adutils import Hdf5Writer, SingleTriggerV33, SynchronisedAdDriverBase
 
 
 class AdSimDetector(SingleTriggerV33, DetectorBase):
@@ -22,9 +20,8 @@ class AdSimDetector(SingleTriggerV33, DetectorBase):
         lazy=True,
     )
 
-    def __init__(self, *args, wiring: PluginWiring, **kwargs) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.plugin_wiring = wiring
         self.hdf.kind = "normal"
 
         self.stage_sigs = {
@@ -40,6 +37,27 @@ class AdSimDetector(SingleTriggerV33, DetectorBase):
             self.cam.trigger_mode: "Internal",
             **self.stage_sigs,  # type: ignore
         }
+
+        # Settings to apply when priming plugins during pre-stage
+        self._priming_settings = {
+            self.hdf.enable: 1,
+            self.hdf.nd_array_port: self.cam.port_name.get(),
+            self.cam.array_callbacks: 1,
+            self.cam.image_mode: "Single",
+            self.cam.trigger_mode: "Off",
+            # Take the quickest possible frame
+            self.cam.acquire_time: 6.3e-05,
+            self.cam.acquire_period: 0.003,
+        }
+
+        # Signals that control driver and hdf writer should be put_complete to
+        # avoid race conditions during priming
+        for signal in set(self.stage_sigs.keys()).union(
+            set(self._priming_settings.keys())
+        ):
+            if isinstance(signal, EpicsSignal):
+                signal.put_complete = True
+        self.cam.acquire.put_complete = True
 
     def stage(self, *args, **kwargs):
         # We have to manually set the acquire period bcause the EPICS driver
@@ -63,30 +81,7 @@ class AdSimDetector(SingleTriggerV33, DetectorBase):
         Take a single frame and pipe it through all enabled plugins
         """
 
-        priming_settings = {
-            self.hdf.enable: 1,
-            self.hdf.nd_array_port: self.cam.port_name.get(),
-            self.cam.array_callbacks: 1,
-            self.cam.image_mode: "Single",
-            self.cam.trigger_mode: "Internal",
-            # Take the quickest possible frame
-            self.cam.acquire_time: 0.0,
-            self.cam.acquire_period: 0.0,
-        }
-
-        # Backup state and ensure we are not acquiring
-        reset_to = {signal: signal.get() for signal in priming_settings.keys()}
         self.cam.acquire.set(0).wait(timeout=timeout)
-
-        try:
-            # Apply all settings for acquisition
-            for signal, value in priming_settings.items():
-                # Ensure that .wait really will wait until the PV is set including its RBV
-                signal.set(value).wait(timeout=timeout)
-
+        with set_then_restore(self._priming_settings):
             # Acquire a frame
             self.cam.acquire.set(1).wait(timeout=timeout)
-        finally:
-            # Revert settings to previous values
-            for signal, value in reversed(reset_to.items()):
-                signal.set(value).wait(timeout=timeout)

@@ -1,8 +1,21 @@
+import functools
+import operator
+import time
+from contextlib import contextmanager
 from functools import partial
-from typing import Callable
+from typing import (
+    Any,
+    Callable,
+    Iterable,
+    Mapping,
+    Optional,
+    Protocol,
+    runtime_checkable,
+)
 
+from bluesky.protocols import Movable
 from ophyd import Component, EpicsSignal
-from ophyd.status import Status, StatusBase
+from ophyd.status import AndStatus, Status, StatusBase
 
 from dodal.log import LOGGER
 
@@ -92,3 +105,67 @@ def run_functions_without_blocking(
     # Initiate the chain of functions
     wrap_func(starting_status, functions_to_chain[0], wrapped_funcs[-1])
     return full_status
+
+
+@runtime_checkable
+class MovableAndGettable(Movable, Protocol):
+    def get(self) -> Any:
+        ...
+
+
+@contextmanager
+def set_then_restore(
+    demands: Mapping[MovableAndGettable, Any],
+    timeout: Optional[float] = 10.0,
+):
+    """
+    Set a collection of signals. Restore values upon exit of context manager.
+
+    Example:
+        with set_then_restore({a: 1, b: 2}):
+            # Do things with a and b
+
+        # a and b will be restored to their original values here
+
+    Args:
+        demands: Dictionary of signals and the values to set them to for the duration
+            of the context.
+        timeout: Timeout to apply when . Defaults to 10.0.
+
+    Yields:
+        cache: Dictionary of signals to restore values
+    """
+    cache = {signal: signal.get() for signal in demands.keys()}
+    try:
+        all_set_operations = [signal.set(value) for signal, value in demands.items()]
+        status = chain_statuses(all_set_operations)
+        status.wait(timeout=timeout)
+        yield cache
+    finally:
+        chain_statuses(
+            (signal.set(original_value) for signal, original_value in cache.items())
+        ).wait(timeout=timeout)
+
+
+def chain_statuses(statuses: Iterable[Status]) -> Status:
+    """
+    Creates a status that ands together a series of statuses.
+    The returned status succeeds when all input statuses succeed and fails when
+    any one input status fails.
+
+    Args:
+        statuses: Iterable of statuses to and together.
+
+    Returns:
+        Status: A wrapping status
+    """
+
+    # Strange timing going on in Ophyd library, Status is not done on creation
+    # despite constructor
+    initial = Status(done=True, success=True)
+    initial.wait(timeout=0.1)
+
+    def reducer(a: Status, b: Status) -> Status:
+        return AndStatus(a, b)
+
+    return functools.reduce(reducer, list(statuses), initial)

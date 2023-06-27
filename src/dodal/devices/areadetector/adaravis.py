@@ -71,29 +71,18 @@ class AdAravisDetector(SingleTriggerV33, DetectorBase):
             acquire_time = self.cam.acquire_time.get()
         self.stage_sigs[self.cam.acquire_period] = acquire_time + _ACQUIRE_BUFFER_PERIOD
 
-        # Ensure detector warmed up
-        self._prime_hdf()
+        # Ensure plugins are primed
+        self._minimal_frame(timeout=10.0)
 
         # Now calling the super method should set the acquire period
         super(AdAravisDetector, self).stage(*args, **kwargs)
 
-    def _prime_hdf(self) -> None:
+    def _minimal_frame(self, timeout: float) -> None:
         """
-        Take a single frame and pipe it through the HDF5 writer plugin
+        Take a single frame and pipe it through all enabled plugins
         """
 
-        # Backup state and ensure we are not acquiring
-        reset_to = {signal: signal.get() for signal in self._priming_settings.keys()}
-        self.cam.acquire.set(0).wait(timeout=10)
-
-        # Apply all settings for acquisition
-        for signal, value in self._priming_settings.items():
-            # Ensure that .wait really will wait until the PV is set including its RBV
-            signal.set(value).wait(timeout=10)
-
-        # Acquire a frame
-        self.cam.acquire.set(1).wait(timeout=10)
-
-        # Revert settings to previous values
-        for signal, value in reversed(reset_to.items()):
-            signal.set(value).wait(timeout=10)
+        self.cam.acquire.set(0).wait(timeout=timeout)
+        with set_then_restore(self._priming_settings):
+            # Acquire a frame
+            self.cam.acquire.set(1).wait(timeout=timeout)
