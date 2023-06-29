@@ -9,9 +9,9 @@ from typing import (
     Iterable,
     Mapping,
     Optional,
-    Protocol,
-    runtime_checkable,
 )
+
+from typing_extensions import Protocol, runtime_checkable
 
 from bluesky.protocols import Movable
 from ophyd import Component, EpicsSignal

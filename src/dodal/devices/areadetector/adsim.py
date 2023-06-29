@@ -44,10 +44,10 @@ class AdSimDetector(SingleTriggerV33, DetectorBase):
             self.hdf.nd_array_port: self.cam.port_name.get(),
             self.cam.array_callbacks: 1,
             self.cam.image_mode: "Single",
-            self.cam.trigger_mode: "Off",
+            self.cam.trigger_mode: "Internal",
             # Take the quickest possible frame
-            self.cam.acquire_time: 6.3e-05,
-            self.cam.acquire_period: 0.003,
+            self.cam.acquire_time: 0.0,
+            self.cam.acquire_period: 0.0,
         }
 
         # Signals that control driver and hdf writer should be put_complete to
