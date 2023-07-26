@@ -8,6 +8,7 @@ with patch.dict("os.environ", {"BEAMLINE": "p38"}, clear=True):
 
 def test_device_creation():
     beamline_utils.set_beamline("p38")
+    beamline_utils.ACTIVE_DEVICES.clear()
     devices = make_all_devices(p38, fake_with_ophyd_sim=True)
     assert len(devices) > 0
     for device_name in devices.keys():
