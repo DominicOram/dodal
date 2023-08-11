@@ -22,7 +22,7 @@ dependencies = [
     "requests",
     "graypy",
     "pydantic<2.0",
-    "ophyd_epics_devices",
+    "ophyd-epics-devices @ git+https://github.com/bluesky/ophyd-epics-devices.git",
 ]
 dynamic = ["version"]
 license.file = "LICENSE"
