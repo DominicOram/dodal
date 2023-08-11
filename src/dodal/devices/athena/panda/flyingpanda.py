@@ -1,6 +1,6 @@
 from typing import Dict, Iterator
 
-import tables
+import dodal.devices.athena.panda.tables as tables
 
 from bluesky.protocols import Descriptor, Flyable, PartialEvent
 from ophyd.v2.core import AsyncStatus, wait_for_value
