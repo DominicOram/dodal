@@ -23,6 +23,7 @@ dependencies = [
     "graypy",
     "pydantic<2.0",
     "ophyd-epics-devices @ git+https://github.com/bluesky/ophyd-epics-devices.git@72b3517e91e84df59ac2abdaac45db95c3f7a32c",
+    "pyfiglet",
 ]
 dynamic = ["version"]
 license.file = "LICENSE"
