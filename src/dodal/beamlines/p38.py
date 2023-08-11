@@ -1,5 +1,5 @@
 from dodal.utils import BeamlinePrefix
-from devices.athena.panda import FlyingPanda
+from dodal.devices.athena.panda import FlyingPanda
 
 from ophyd.v2.core import DeviceCollector
 from ophyd_epics_devices.panda import PandA
