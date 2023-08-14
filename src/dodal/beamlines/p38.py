@@ -23,7 +23,7 @@ def d11(name: str = "D11") -> HDFStreamerDet:
     # det.hdf.write_path_template = "%Y"
 
     d11_dir = TmpDirectoryProvider()
-    d11_dir._directory = Path(f"/dls/{BEAMLINE}/data/2023/cm33874-3/D11")
+    d11_dir._directory = Path(f"/dls/{BEAMLINE}/data/2023/cm33874-3/{name}")
 
     with DeviceCollector():
         d11_drv = ADDriver(f"{PREFIX}-DI-DCAM-03:DET:")
@@ -39,7 +39,7 @@ def d12(name: str = "D12") -> HDFStreamerDet:
     # det.hdf.write_path_template = "%Y"
 
     d12_dir = TmpDirectoryProvider()
-    d12_dir._directory = Path(f"/dls/{BEAMLINE}/data/2023/cm33873/D12")
+    d12_dir._directory = Path(f"/dls/{BEAMLINE}/data/2023/cm33874-3/{name}")
 
     with DeviceCollector():
         d12_drv = ADDriver(f"{PREFIX}-DI-DCAM-04:DET:")
