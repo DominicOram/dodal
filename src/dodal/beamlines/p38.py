@@ -28,8 +28,8 @@ def d11(name: str = "D11") -> HDFStreamerDet:
     with DeviceCollector():
         d11_drv = ADDriver(f"{PREFIX}-DI-DCAM-03:DET:")
         d11_hdf = NDFileHDF(f"{PREFIX}-DI-DCAM-03:HDF5:")
-        d11 = HDFStreamerDet(d11_drv, d11_hdf, d11_dir)
-    return d11
+        det = HDFStreamerDet(d11_drv, d11_hdf, d11_dir, name)
+    return det
 
 
 def d12(name: str = "D12") -> HDFStreamerDet:
@@ -44,8 +44,8 @@ def d12(name: str = "D12") -> HDFStreamerDet:
     with DeviceCollector():
         d12_drv = ADDriver(f"{PREFIX}-DI-DCAM-04:DET:")
         d12_hdf = NDFileHDF(f"{PREFIX}-DI-DCAM-04:HDF5:")
-        d12 = HDFStreamerDet(d12_drv, d12_hdf, d12_dir)
-    return d12
+        det = HDFStreamerDet(d12_drv, d12_hdf, d12_dir, name)
+    return det
 
 
 # def panda(name: str = "PANDA") -> PandA:
