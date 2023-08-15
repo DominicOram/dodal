@@ -56,5 +56,4 @@ def panda(name: str = "PANDA") -> PandA:
 
 def fl_panda(name: str = "FL_PANDA", pnd: PandA = None) -> FlyingPanda:
     pbox = FlyingPanda(pnd)
-    pbox.name = name
     return pbox
