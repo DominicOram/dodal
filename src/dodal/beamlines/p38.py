@@ -48,12 +48,12 @@ def d12(name: str = "D12") -> HDFStreamerDet:
     return det
 
 
-# def panda(name: str = "PANDA") -> PandA:
-#     with DeviceCollector():
-#         pbox = PandA("BL38P-PANDA")
-#     return pbox
+def panda(name: str = "PANDA") -> PandA:
+    with DeviceCollector():
+        pbox = PandA("BL38P-PANDA")
+    return pbox
 
 
-# def fl_panda(name: str = "FL_PANDA", pnd: PandA = None) -> FlyingPanda:
-#     pbox = FlyingPanda(pnd)
-#     return pbox
+def fl_panda(name: str = "FL_PANDA", pnd: PandA = None) -> FlyingPanda:
+    pbox = FlyingPanda(pnd)
+    return pbox
