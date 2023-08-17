@@ -54,6 +54,6 @@ def panda(name: str = "PANDA") -> PandA:
     return pbox
 
 
-def fl_panda(name: str = "FL_PANDA", pnd: PandA = None) -> FlyingPanda:
-    pbox = FlyingPanda(pnd)
-    return pbox
+# def fl_panda(name: str = "FL_PANDA", pnd: PandA = None) -> FlyingPanda:
+#     pbox = FlyingPanda(pnd)
+#     return pbox
