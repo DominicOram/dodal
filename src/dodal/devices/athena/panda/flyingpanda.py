@@ -17,17 +17,17 @@ class FlyingPanda(Flyable):
 
     async def set_frames(self, frames):
         table = tables.build_table(*zip(*frames))
-        await self.dev.seq1.tables.set(table)
+        await self.dev.seq[1].tables.set(table)
 
     @AsyncStatus.wrap
     async def kickoff(self) -> None:
-        await self.dev.seq1.enable.set("ONE")
-        await wait_for_value(self.dev.seq1.active, "1", 5)
+        await self.dev.seq[1].enable.set("ONE")
+        await wait_for_value(self.dev.seq[1].active, "1", 5)
 
     @AsyncStatus.wrap
     async def complete(self) -> None:
-        await wait_for_value(self.dev.seq1.active, "0", 20)
-        await self.dev.seq1.enable.set("ZERO")
+        await wait_for_value(self.dev.seq[1].active, "0", 20)
+        await self.dev.seq[1].enable.set("ZERO")
 
     def collect(self) -> Iterator[PartialEvent]:
         yield from iter([])
