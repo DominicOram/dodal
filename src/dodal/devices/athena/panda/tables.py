@@ -163,20 +163,20 @@ async def display(pnd, text, limit=50, posn=600, step=6, window=30, chunk=100):
     src = seq_tables(
         table_chunks(table_frames(cycle(frames(text)), window, posn, step), chunk)
     )
-    await pnd.seq1.table.set(next(src))
-    await pnd.seq1.enable.set("ONE")
-    async for ready in observe_value(pnd.seq1.can_write_next):
+    await pnd.seq[1].table.set(next(src))
+    await pnd.seq[1].enable.set("ONE")
+    async for ready in observe_value(pnd.seq[1].can_write_next):
         if ready == 1:
             print("New table time")
-            active = await pnd.seq1.bita.get_value()
+            active = await pnd.seq[1].bita.get_value()
             if (
                 limit == 0 or active == "ONE"
             ):  # intentionally == to allow -1 to be infinite
                 print("Limit reached: " + active)
-                await pnd.seq1.table.set(build_table([1], ["Immediate"], *([[0]] * 15)))
-                await pnd.seq1.enable.set("ZERO")
+                await pnd.seq[1].table.set(build_table([1], ["Immediate"], *([[0]] * 15)))
+                await pnd.seq[1].enable.set("ZERO")
                 break
-            await pnd.seq1.table.set(next(src))
+            await pnd.seq[1].table.set(next(src))
 
             limit -= 1
 
