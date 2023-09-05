@@ -14,6 +14,7 @@ from typing import (
     Mapping,
     Optional,
     Type,
+    TypeGuard,
     TypeVar,
     Union,
 )
@@ -196,11 +197,11 @@ def is_any_device_factory(func: Callable) -> bool:
     return is_v1_device_factory(func) or is_v2_device_factory(func)
 
 
-def is_v2_device_type(obj: Type[Any]) -> bool:
+def is_v2_device_type(obj: Type[Any]) -> TypeGuard[OphydV2Device]:
     return inspect.isclass(obj) and issubclass(obj, OphydV2Device)
 
 
-def is_v1_device_type(obj: Type[Any]) -> bool:
+def is_v1_device_type(obj: Type[Any]) -> TypeGuard[OphydV1Device]:
     is_class = inspect.isclass(obj)
     follows_protocols = any(
         map(lambda protocol: isinstance(obj, protocol), BLUESKY_PROTOCOLS)

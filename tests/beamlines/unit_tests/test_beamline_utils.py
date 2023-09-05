@@ -100,4 +100,8 @@ def test_wait_for_v2_device_connection_passes_through_timeout(
 
     beamline_utils._wait_for_connection(device, **kwargs)
 
+    import time
+
+    time.sleep(1)
+
     call_in_bluesky_el.assert_called_once_with(ANY, expected_timeout)

@@ -7,6 +7,7 @@ from ophyd.sim import make_fake_device
 from ophyd.v2.core import Device as OphydV2Device
 from ophyd.v2.core import wait_for_connection as v2_device_wait_for_connection
 
+from dodal.log import LOGGER
 from dodal.utils import AnyDevice, BeamlinePrefix, skip_device
 
 DEFAULT_CONNECTION_TIMEOUT: Final[float] = 5.0
@@ -46,8 +47,10 @@ def _wait_for_connection(
     device: AnyDevice, timeout: float = DEFAULT_CONNECTION_TIMEOUT, sim: bool = False
 ) -> None:
     if isinstance(device, OphydV1Device):
+        LOGGER.info("Waiting for connection of Ophyd V1 device {}".format(device))
         device.wait_for_connection(timeout=timeout)
     elif isinstance(device, OphydV2Device):
+        LOGGER.info("Waiting for connection of Ophyd V2 device {}".format(device))
         call_in_bluesky_event_loop(
             v2_device_wait_for_connection(coros=device.connect(sim=sim)),
             timeout=timeout,
