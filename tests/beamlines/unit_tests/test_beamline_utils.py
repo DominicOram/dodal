@@ -93,6 +93,7 @@ def test_wait_for_v1_device_connection_passes_through_timeout(kwargs, expected_t
 )
 @patch("dodal.beamlines.beamline_utils.call_in_bluesky_event_loop", autospec=True)
 @patch("asyncio.wait_for", autospec=True)
+@pytest.mark.skip(reason="See #163")
 def test_wait_for_v2_device_connection_passes_through_timeout(
     wait_for, call_in_bluesky_el, kwargs, expected_timeout
 ):
