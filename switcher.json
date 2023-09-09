@@ -1,154 +1,158 @@
 [
   {
     "version": "main",
-    "url": "https://DiamondLightSource.github.io/dodal/main/"
+    "url": "https://DominicOram.github.io/dodal/main/"
   },
   {
     "version": "1.4.0",
-    "url": "https://DiamondLightSource.github.io/dodal/1.4.0/"
+    "url": "https://DominicOram.github.io/dodal/1.4.0/"
   },
   {
     "version": "1.3.0",
-    "url": "https://DiamondLightSource.github.io/dodal/1.3.0/"
+    "url": "https://DominicOram.github.io/dodal/1.3.0/"
   },
   {
     "version": "1.2.0",
-    "url": "https://DiamondLightSource.github.io/dodal/1.2.0/"
+    "url": "https://DominicOram.github.io/dodal/1.2.0/"
   },
   {
     "version": "1.1.0",
-    "url": "https://DiamondLightSource.github.io/dodal/1.1.0/"
+    "url": "https://DominicOram.github.io/dodal/1.1.0/"
   },
   {
     "version": "1.0.0",
-    "url": "https://DiamondLightSource.github.io/dodal/1.0.0/"
+    "url": "https://DominicOram.github.io/dodal/1.0.0/"
+  },
+  {
+    "version": "0.0.7",
+    "url": "https://DominicOram.github.io/dodal/0.0.7/"
   },
   {
     "version": "0.0.5",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.5/"
+    "url": "https://DominicOram.github.io/dodal/0.0.5/"
   },
   {
     "version": "0.0.4",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.4/"
+    "url": "https://DominicOram.github.io/dodal/0.0.4/"
   },
   {
     "version": "0.0.3",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.3/"
+    "url": "https://DominicOram.github.io/dodal/0.0.3/"
   },
   {
     "version": "0.0.2",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.2/"
+    "url": "https://DominicOram.github.io/dodal/0.0.2/"
   },
   {
     "version": "0.0.1",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.1/"
+    "url": "https://DominicOram.github.io/dodal/0.0.1/"
   },
   {
     "version": "0.0.2_async_arming",
-    "url": "https://DiamondLightSource.github.io/dodal/0.0.2_async_arming/"
+    "url": "https://DominicOram.github.io/dodal/0.0.2_async_arming/"
   },
   {
     "version": "141_i04_devices",
-    "url": "https://DiamondLightSource.github.io/dodal/141_i04_devices/"
+    "url": "https://DominicOram.github.io/dodal/141_i04_devices/"
   },
   {
     "version": "145_rename_dls_dodal",
-    "url": "https://DiamondLightSource.github.io/dodal/145_rename_dls_dodal/"
+    "url": "https://DominicOram.github.io/dodal/145_rename_dls_dodal/"
   },
   {
     "version": "145_test_pypi",
-    "url": "https://DiamondLightSource.github.io/dodal/145_test_pypi/"
+    "url": "https://DominicOram.github.io/dodal/145_test_pypi/"
   },
   {
     "version": "262_make_arming_eiger_asynchronous",
-    "url": "https://DiamondLightSource.github.io/dodal/262_make_arming_eiger_asynchronous/"
+    "url": "https://DominicOram.github.io/dodal/262_make_arming_eiger_asynchronous/"
   },
   {
     "version": "51_aperture_scatterguard_no_positions",
-    "url": "https://DiamondLightSource.github.io/dodal/51_aperture_scatterguard_no_positions/"
+    "url": "https://DominicOram.github.io/dodal/51_aperture_scatterguard_no_positions/"
   },
   {
     "version": "76_make_stage_synchronous_if_arming_not_started",
-    "url": "https://DiamondLightSource.github.io/dodal/76_make_stage_synchronous_if_arming_not_started/"
+    "url": "https://DominicOram.github.io/dodal/76_make_stage_synchronous_if_arming_not_started/"
   },
   {
     "version": "78_fix_skip_decorator",
-    "url": "https://DiamondLightSource.github.io/dodal/78_fix_skip_decorator/"
+    "url": "https://DominicOram.github.io/dodal/78_fix_skip_decorator/"
   },
   {
     "version": "96_fix_await_value",
-    "url": "https://DiamondLightSource.github.io/dodal/96_fix_await_value/"
+    "url": "https://DominicOram.github.io/dodal/96_fix_await_value/"
   },
   {
     "version": "adsim-fixes",
-    "url": "https://DiamondLightSource.github.io/dodal/adsim-fixes/"
+    "url": "https://DominicOram.github.io/dodal/adsim-fixes/"
   },
   {
     "version": "allow_both_v1_and_v2_ophyd_devices",
-    "url": "https://DiamondLightSource.github.io/dodal/allow_both_v1_and_v2_ophyd_devices/"
+    "url": "https://DominicOram.github.io/dodal/allow_both_v1_and_v2_ophyd_devices/"
   },
   {
     "version": "artemis598_params_changes",
-    "url": "https://DiamondLightSource.github.io/dodal/artemis598_params_changes/"
+    "url": "https://DominicOram.github.io/dodal/artemis598_params_changes/"
   },
   {
     "version": "artemis_262_move_arming_out_of_stage",
-    "url": "https://DiamondLightSource.github.io/dodal/artemis_262_move_arming_out_of_stage/"
+    "url": "https://DominicOram.github.io/dodal/artemis_262_move_arming_out_of_stage/"
   },
   {
     "version": "artemis_499_change_oav_parameter_file",
-    "url": "https://DiamondLightSource.github.io/dodal/artemis_499_change_oav_parameter_file/"
+    "url": "https://DominicOram.github.io/dodal/artemis_499_change_oav_parameter_file/"
   },
   {
     "version": "artemis_701_do_optimise_attenuation_scan",
-    "url": "https://DiamondLightSource.github.io/dodal/artemis_701_do_optimise_attenuation_scan/"
+    "url": "https://DominicOram.github.io/dodal/artemis_701_do_optimise_attenuation_scan/"
   },
   {
     "version": "fix_wrong_return_type",
-    "url": "https://DiamondLightSource.github.io/dodal/fix_wrong_return_type/"
+    "url": "https://DominicOram.github.io/dodal/fix_wrong_return_type/"
   },
   {
     "version": "hyperion_796_xbpm_feedback",
-    "url": "https://DiamondLightSource.github.io/dodal/hyperion_796_xbpm_feedback/"
+    "url": "https://DominicOram.github.io/dodal/hyperion_796_xbpm_feedback/"
   },
   {
     "version": "i04_1",
-    "url": "https://DiamondLightSource.github.io/dodal/i04_1/"
+    "url": "https://DominicOram.github.io/dodal/i04_1/"
   },
   {
     "version": "i19_1",
-    "url": "https://DiamondLightSource.github.io/dodal/i19_1/"
+    "url": "https://DominicOram.github.io/dodal/i19_1/"
   },
   {
     "version": "jungfrau_commissioning",
-    "url": "https://DiamondLightSource.github.io/dodal/jungfrau_commissioning/"
+    "url": "https://DominicOram.github.io/dodal/jungfrau_commissioning/"
   },
   {
     "version": "p38",
-    "url": "https://DiamondLightSource.github.io/dodal/p38/"
+    "url": "https://DominicOram.github.io/dodal/p38/"
   },
   {
     "version": "p38-h5",
-    "url": "https://DiamondLightSource.github.io/dodal/p38-h5/"
+    "url": "https://DominicOram.github.io/dodal/p38-h5/"
   },
   {
     "version": "p38fix",
-    "url": "https://DiamondLightSource.github.io/dodal/p38fix/"
+    "url": "https://DominicOram.github.io/dodal/p38fix/"
   },
   {
     "version": "p45AndAdsim",
-    "url": "https://DiamondLightSource.github.io/dodal/p45AndAdsim/"
+    "url": "https://DominicOram.github.io/dodal/p45AndAdsim/"
   },
   {
     "version": "release-004-retroactive",
-    "url": "https://DiamondLightSource.github.io/dodal/release-004-retroactive/"
+    "url": "https://DominicOram.github.io/dodal/release-004-retroactive/"
   },
   {
     "version": "reshape_in_ophyd",
-    "url": "https://DiamondLightSource.github.io/dodal/reshape_in_ophyd/"
+    "url": "https://DominicOram.github.io/dodal/reshape_in_ophyd/"
   },
   {
     "version": "tom_testing",
-    "url": "https://DiamondLightSource.github.io/dodal/tom_testing/"
+    "url": "https://DominicOram.github.io/dodal/tom_testing/"
   }
 ]
