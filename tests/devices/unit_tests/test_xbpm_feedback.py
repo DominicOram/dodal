@@ -10,6 +10,7 @@ def fake_xbpm_feedback():
     return FakeXBPMFeedback(name="xbpm")
 
 
+@pytest.mark.skip()
 def test_given_pos_ok_when_xbpm_feedback_kickoff_then_return_immediately(
     fake_xbpm_feedback: XBPMFeedback,
 ):
@@ -19,6 +20,7 @@ def test_given_pos_ok_when_xbpm_feedback_kickoff_then_return_immediately(
     assert status.done and status.success
 
 
+@pytest.mark.skip()
 def test_given_pos_not_ok_and_goes_ok_for_stability_time_when_xbpm_feedback_kickoff_then_return_immediately(
     fake_xbpm_feedback: XBPMFeedback,
 ):

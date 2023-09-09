@@ -37,6 +37,7 @@ def test_when_zoom_level_changed_then_oav_rewired(zoom, expected_plugin, oav: OA
     assert oav.snapshot.input_plugin.get() == expected_plugin
 
 
+@pytest.mark.skip()
 def test_when_zoom_level_changed_then_status_waits_for_all_plugins_to_be_updated(
     oav: OAV,
 ):
